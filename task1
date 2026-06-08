@@ -1,1 +1,128 @@
+TASK1 STUDENT DETAILS MANAGER
 
+class Student_data:
+    def __init__(self, roll_no, name, age, standard, percentage, address, contact):
+        self.roll_no = roll_no
+        self.name = name
+        self.age = age
+        self.standard = standard
+        self.percentage = percentage
+        self.address = address
+        self.contact = contact
+
+    def display(self):
+        print("\nSTUDENT DETAILS")
+        print("Student roll no is:", self.roll_no)
+        print("Student name is:", self.name)
+        print("Student age is:", self.age)
+        print("Student standard is:", self.standard)
+        print("Student percentage is:", self.percentage)
+        print("Student address is:", self.address)
+        print("Student contact is:", self.contact)
+
+
+class Student_data_manager:
+    def __init__(self):
+        self.student = []
+
+    def add_student(self):
+        roll_no = input("Enter Roll No: ")
+        name = input("Enter Name: ")
+        age = input("Enter Age: ")
+        standard = input("Enter Standard: ")
+        percentage = input("Enter Percentage: ")
+        address = input("Enter Address: ")
+        contact = input("Enter Contact No: ")
+
+        data = [roll_no, name, age, standard, percentage, address, contact]
+        self.student.append(data)
+
+        print("Student details added successfully")
+
+    def search_student(self):
+        roll_no = input("Enter Roll No: ")
+
+        for s in self.student:
+            if s[0] == roll_no:
+                print("Student Found")
+                print(s)
+                break
+        else:
+            print("Student doesn't exist")
+
+    def update_student(self):
+        roll_no = input("Enter Roll No: ")
+
+        for s in self.student:
+            if s[0] == roll_no:
+                s[1] = input("Enter New Name: ")
+                s[2] = input("Enter New Age: ")
+                s[3] = input("Enter New Standard: ")
+                s[4] = input("Enter New Percentage: ")
+                s[5] = input("Enter New Address: ")
+                s[6] = input("Enter New Contact No: ")
+
+                print("Details Updated")
+                break
+        else:
+            print("Student not found")
+
+    def delete_student(self):
+        roll_no = input("Enter Roll No: ")
+
+        for s in self.student:
+            if s[0] == roll_no:
+                self.student.remove(s)
+                print("Student Deleted")
+                break
+        else:
+            print("Student not found")
+
+    def display_student(self):
+        if len(self.student) == 0:
+            print("No Records Found")
+        else:
+            for s in self.student:
+                print("\nRoll No:", s[0])
+                print("Name:", s[1])
+                print("Age:", s[2])
+                print("Standard:", s[3])
+                print("Percentage:", s[4])
+                print("Address:", s[5])
+                print("Contact:", s[6])
+
+
+obj = Student_data_manager()
+
+while True:
+
+    print("\n1. Add Student")
+    print("2. Search Student")
+    print("3. Update Student")
+    print("4. Delete Student")
+    print("5. Display All Students")
+    print("6. Exit")
+
+    choice = input("Enter Choice: ")
+
+    if choice == "1":
+        obj.add_student()
+
+    elif choice == "2":
+        obj.search_student()
+
+    elif choice == "3":
+        obj.update_student()
+
+    elif choice == "4":
+        obj.delete_student()
+
+    elif choice == "5":
+        obj.display_student()
+
+    elif choice == "6":
+        print("Thank You")
+        break
+
+    else:
+        print("Invalid Choice")
