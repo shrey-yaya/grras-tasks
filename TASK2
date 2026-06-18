@@ -1,0 +1,55 @@
+NETFLIX (INDIAN CONTENT) 
+#1 [TV SHOWS VS MOVIES ] 
+#2 [TOP 10 RATINGS]
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+url="https://raw.githubusercontent.com/imspandey2006-lgtm/grras-tasks/main/netflix_titles.csv"
+df=pd.read_csv(url)
+
+
+df=df[df['country'].str.contains('India',na=False)]
+
+#fillna
+df['director']=df['director'].fillna('Unknown')
+
+#drop
+df.dropna(inplace=True)
+df.drop(columns=['description'],inplace=True)
+
+# mean
+print(np.mean(df['release_year']))
+
+fig,aux=plt.subplots(1,2)
+
+#graph1
+df['type'].value_counts().plot(
+    kind='pie',
+    ax=aux[0],
+    autopct='%1.1f%%'
+)
+
+aux[0].set_title('Movies vs TV Shows')
+
+#graph2
+ratings=df['rating'].value_counts().head(10)
+
+aux[1].plot(
+    ratings.index,
+    ratings.values,
+    color='red',
+    linewidth=2,
+    marker='o',
+    markersize=6,
+    linestyle='--'
+)
+
+aux[1].set_title('Top 10 Ratings')
+aux[1].set_ylabel('Count')
+aux[1].set_xlabel('Ratings')
+
+plt.tight_layout()
+plt.show()
+
