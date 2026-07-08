@@ -1,0 +1,5 @@
+The dataset zomato.csv was too big to be uploaded oh GitHub. 
+
+So, here is the link for the dataset, you can go and download the dataset from this link given below:-
+
+https://www.kaggle.com/datasets/absin7/zomato-bangalore-dataset?select=zomato.csv
